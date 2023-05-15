@@ -26,6 +26,8 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     private static final String ERROR = "ERROR";
     private static final String ACTIVITY_DOES_NOT_EXIST = "ACTIVITY_DOES_NOT_EXIST";
     private static final int ACTIVITY_REQUEST_CODE = 1;
+    private static final int MSG_STATE_OK = 1;
+    private static final int MSG_STATE_NG = 2;
     private String returnKey = "";
 
     private Promise mPromise;
@@ -122,10 +124,14 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
         @Override
         public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
             if (data != null) {
-                String returnValue = data.getStringExtra(returnKey);
-                mPromise.resolve(returnValue);
+                Log.d("VPOS-D","ddddddddddddddddddd" + requestCode + " | " + resultCode);
+                // String returnValue = data.getStringExtra(returnKey);
+                mPromise.resolve(data);
                 mPromise = null;
             }
         }
+        
+    }
+
     };
 }

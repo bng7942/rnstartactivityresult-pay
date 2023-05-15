@@ -1,2 +1,0 @@
-- https://www.appcoda.com/working-url-schemes-ios/
-- https://facebook.github.io/react-native/docs/native-modules-android

@@ -1,28 +1,25 @@
 {
-  "name": "react-native-intent-gate",
-  "version": "0.0.2",
-  "description": "Opens Android App Intents and Reads Activity Results",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "react-native",
-    "android",
-    "intent"
-  ],
-  "author": "Digital Health Integration <www.digitalhealthintegration.org>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DigitalHealthIntegration/React-Native-Intent-Gate.git"
-  },
-  "homepage": "https://github.com/DigitalHealthIntegration/React-Native-Intent-Gate",
-  "peerDependencies": {
-    "@types/react": "^16.8.19",
-    "@types/react-native": "^0.57.62",
-    "react": "^16.8.6",
-    "react-native": "^0.59.9"
+    "name": "react-native-start-activity-for-result",
+    "version": "1.0.0",
+    "description": "React Native Android module to use Android's Intent actions for starting activity",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "react",
+      "react-native",
+      "react-component",
+      "intent",
+      "startActivityForResult",
+      "android"
+    ],
+    "author": "Antti Vuorenmaa <anttivuor@gmail.com>",
+    "license": "MIT",
+    "repository": "https://github.com/anttivuor/react-native-start-activity-for-result",
+    "bugs": "https://github.com/anttivuor/react-native-start-activity-for-result/issues",
+    "peerDependencies": {
+      "react-native": "*"
+    }
   }
-}

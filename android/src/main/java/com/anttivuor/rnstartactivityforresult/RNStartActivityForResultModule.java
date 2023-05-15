@@ -112,7 +112,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
 
             returnKey = key;
 
-            currentActivity.startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
+            currentActivity.startActivityForResult(launchIntent, ACTIVITY_REQUEST_CODE);
         } catch (Exception e) {
             mPromise.reject(ERROR, e);
             mPromise = null;

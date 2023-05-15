@@ -1,4 +1,4 @@
-package com.posboy.startactivityforresultpay;
+package com.posboy.rnstartactivityforresultpay;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.posboy.startactivityforresultpay">
+          package="com.posboy.rnstartactivityforresultpay">
 
     <application>
         <service

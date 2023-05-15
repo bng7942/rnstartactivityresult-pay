@@ -132,19 +132,25 @@ public class IntentModule extends ReactContextBaseJavaModule {
     }
     responsePromise = promise;
     try {
-      Intent sendIntent = new Intent();
-      sendIntent.setAction(action);
+      String uri = "vpos_app://vpos";
+      Intent sendIntent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
+      sendIntent.setAction(Intent.ACTION_VIEW);
 
       if (extraKey != null) {
         for (int i = 0; i < extraKey.size(); i++) {
           sendIntent.putExtra(extraKey.getString(i), extraValue.getString(i)); // loop here to read all keys and value
         }
       }
-      sendIntent.setType(type);
-      Intent chooser = Intent.createChooser(sendIntent, title);
+
       if (sendIntent.resolveActivity(getReactApplicationContext().getPackageManager()) != null) {
-        getReactApplicationContext().startActivityForResult(chooser, Integer.parseInt(requestCode), Bundle.EMPTY);
+        getReactApplicationContext().startActivityForResult(sendIntent, Integer.parseInt(requestCode), Bundle.EMPTY);
       }
+
+      // sendIntent.setType(type);
+      // Intent chooser = Intent.createChooser(sendIntent, title);
+      // if (sendIntent.resolveActivity(getReactApplicationContext().getPackageManager()) != null) {
+      //   getReactApplicationContext().startActivityForResult(chooser, Integer.parseInt(requestCode), Bundle.EMPTY);
+      // }
     } catch (Exception e) {
       responsePromise.reject(e);
       responsePromise = null;

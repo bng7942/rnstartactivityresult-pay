@@ -59,12 +59,12 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void startActivityForResult(String key, ReadableMap options, Promise promise) {
-        // Activity currentActivity = getCurrentActivity();
+        Activity currentActivity = getCurrentActivity();
 
-        // if (currentActivity == null) {
-        //     promise.reject(ACTIVITY_DOES_NOT_EXIST, "Activity doesn't exist");
-        //     return;
-        // }
+        if (currentActivity == null) {
+            promise.reject(ACTIVITY_DOES_NOT_EXIST, "Activity doesn't exist");
+            return;
+        }
 
         mPromise = promise;
 
@@ -111,7 +111,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
 
             returnKey = key;
 
-            startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
+            currentActivity.startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
         } catch (Exception e) {
             mPromise.reject(ERROR, e);
             mPromise = null;

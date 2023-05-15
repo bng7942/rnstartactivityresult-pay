@@ -6,6 +6,8 @@ import android.net.Uri;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
@@ -48,6 +50,12 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
         return constants;
     }
 
+    private String getTime() {
+        long time = System.currentTimeMillis();
+        SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMddHHmmss");
+        return dayTime.format(new Date(time));
+    }
+
     @ReactMethod
     public void startActivityForResult(String key, ReadableMap options, Promise promise) {
         Activity currentActivity = getCurrentActivity();
@@ -85,13 +93,13 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             // else launchIntent.putExtra("byTran", "  ");             // 승인/취소 구분자
 
             launchIntent.putExtra("byTID", "1046889414");              // 단말기번호
-            launchIntent.putExtra("byInstall", String.format("%02d", Integer.parseInt(inputInstall.getText().toString())));          // 할부개월수
-            launchIntent.putExtra("byAmt", inputAmt.getText().toString());              // 총금액
-            launchIntent.putExtra("byOrgDate", inputOrgDate.getText().toString());          // 원거래일자
-            launchIntent.putExtra("byOrgAuth", inputAuthNo.getText().toString());          // 원거래승인번호
+            launchIntent.putExtra("byInstall", "00");          // 할부개월수
+            launchIntent.putExtra("byAmt", "10");              // 총금액
+            launchIntent.putExtra("byOrgDate", "");          // 원거래일자
+            launchIntent.putExtra("byOrgAuth", "");          // 원거래승인번호
             launchIntent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호
 
-            launchIntent.putExtra("byIdno", inputIdno.getText().toString());          //현금/수표 식별번호
+            launchIntent.putExtra("byIdno", "");          //현금/수표 식별번호
 
             launchIntent.putExtra("byTaxAmt", "0");          //세금
             launchIntent.putExtra("bySfeeAmt", "0");          //봉사료

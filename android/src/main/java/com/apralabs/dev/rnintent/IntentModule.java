@@ -3,6 +3,8 @@ package org.digitalhealthintegration.utils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.net.Uri;
+import android.support.v7.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package com.anttivuor.startactivityforresult;
+package com.posboy.startactivityforresult;
 
 import android.app.Activity;
 

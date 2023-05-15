@@ -1,5 +1,5 @@
 export interface IntentParams {
-  action?: string;
+  action: string;
   title?: string;
   data?: any;
   extra?: IntentExtras;

@@ -1,0 +1,25 @@
+{
+    "name": "react-native-start-activity-for-result",
+    "version": "1.0.0",
+    "description": "React Native Android module to use Android's Intent actions for starting activity",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "react",
+      "react-native",
+      "react-component",
+      "intent",
+      "startActivityForResult",
+      "android"
+    ],
+    "author": "Antti Vuorenmaa <anttivuor@gmail.com>",
+    "license": "MIT",
+    "repository": "https://github.com/anttivuor/react-native-start-activity-for-result",
+    "bugs": "https://github.com/anttivuor/react-native-start-activity-for-result/issues",
+    "peerDependencies": {
+      "react-native": "*"
+    }
+  }

@@ -1,4 +1,4 @@
-package com.posboy.startactivityforresult;
+package com.posboy.startactivityforresultpay;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 
-public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
+public class RNStartActivityForResultPayModule extends ReactContextBaseJavaModule {
     private static final String ERROR = "ERROR";
     private static final String ACTIVITY_DOES_NOT_EXIST = "ACTIVITY_DOES_NOT_EXIST";
     private static final int ACTIVITY_REQUEST_CODE = 1;
@@ -31,7 +31,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
 
     private ReactApplicationContext reactContext;
 
-    public RNStartActivityForResultModule(ReactApplicationContext reactContext) {
+    public RNStartActivityForResultPayModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
         this.reactContext.addActivityEventListener(mActivityEventListener);
@@ -39,7 +39,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "RNStartActivityForResult";
+        return "RNStartActivityForResultPay";
     }
 
     @Override

@@ -1,4 +1,4 @@
-# react-native-start-activity-for-result
+# react-native-start-activity-for-result-pay
 
 React Native implementation for Android's native `startActivityForResult()` and `onActivityResult()` methods. This can be used for integrations with other apps that require using the previously mentioned methods.
 
@@ -13,7 +13,7 @@ startActivityForResult(returnKey, options);
 ## Example
 
 ```javascript
-import startActivityForResult from 'react-native-start-activity-for-result';
+import startActivityForResult from 'react-native-start-activity-for-result-pay';
 
 export const openExternalAppAndGetToken = async (uri: string, extra: Object) => {
     const token = await startActivityForResult('external_app_token', {uri, extra});

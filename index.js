@@ -1,12 +1,12 @@
 /**
- * @providesModule RNStartActivityForResult
+ * @providesModule RNStartActivityForResult-pay
  */
 
-var {NativeModules} = require("react-native");
-var RNStartActivityForResult = NativeModules.RNStartActivityForResult || {};
+import { NativeModules } from "react-native";
+var RNStartActivityForResult = NativeModules.RNStartActivityForResultPay || {};
 
 var startActivityForResult = (key, options) => {
     return RNStartActivityForResult.startActivityForResult(key, options);
 };
 
-module.exports = startActivityForResult;
+export default startActivityForResult;

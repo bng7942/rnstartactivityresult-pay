@@ -1,4 +1,4 @@
-package com.posboy.startactivityforresult;
+package com.posboy.startactivityforresultpay;
 
 import android.app.Activity;
 
@@ -10,12 +10,12 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 
-public class RNStartActivityForResultPackage implements ReactPackage {
+public class RNStartActivityForResultPayPackage implements ReactPackage {
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-        modules.add(new RNStartActivityForResultModule(reactContext));
+        modules.add(new RNStartActivityForResultPayModule(reactContext));
         return modules;
     }
 

@@ -1,5 +1,5 @@
 {
-    "name": "react-native-start-activity-for-result",
+    "name": "react-native-start-activity-for-result-pay",
     "version": "1.0.0",
     "description": "React Native Android module to use Android's Intent actions for starting activity",
     "main": "index.js",
@@ -17,8 +17,8 @@
     ],
     "author": "Antti Vuorenmaa <anttivuor@gmail.com>",
     "license": "MIT",
-    "repository": "https://github.com/anttivuor/react-native-start-activity-for-result",
-    "bugs": "https://github.com/anttivuor/react-native-start-activity-for-result/issues",
+    "repository": "https://github.com/bng7942/rnstartactivityresult-pay",
+    "bugs": "https://github.com/bng7942/rnstartactivityresult-pay/issues",
     "peerDependencies": {
       "react-native": "*"
     }

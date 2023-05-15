@@ -1,34 +1,46 @@
-# react-native-start-activity-for-result-pay
+**React Native App Intent Gate**
 
-React Native implementation for Android's native `startActivityForResult()` and `onActivityResult()` methods. This can be used for integrations with other apps that require using the previously mentioned methods.
+**Opens Android App Intent by Package Name and Actions**
 
-##  Usage
+**Features**
 
-```
-import startActivityForResult from 'react-native-start-activity-for-result';
+- Currently supports only on Android
+- Send Extra key-values to intents and reads response from intents if any
+- Promise based
+- Types supported
 
-startActivityForResult(returnKey, options);
-```
+**How to Use**
 
-## Example
+1. Install node module
 
-```javascript
-import startActivityForResult from 'react-native-start-activity-for-result-pay';
+   `npm i react-native-intent-gate`
+   
+   See https://www.npmjs.com/package/react-native-intent-gate for reference
+2. Link the native module
 
-export const openExternalAppAndGetToken = async (uri: string, extra: Object) => {
-    const token = await startActivityForResult('external_app_token', {uri, extra});
-    return token;
-};
-```
+   `react-native link react-native-intent-gate`
 
-## Parameters
+3. Import module in code
 
-| Parameter         | Type          | Description       |
-| ----------------- | ------------- | ----------------- |
-| returnKey         | string        | The key used for getting data back from the launched app. The launched app has to use `putExtra()` method when returning data. More information [here](https://developer.android.com/reference/android/content/Intent#putExtra(java.lang.String,%20android.os.Parcelable)) |
-| options           | Object        | Options that can be passed to the lanched intent (below more information) |
-| options.action    | string        | The used intent action (default value is `Intent.ACTION_VIEW` = "android.intent.action.VIEW"). See more information [here](https://developer.android.com/reference/android/content/Intent#standard-activity-actions). |
-| options.uri       | [Uri](https://developer.android.com/reference/android/net/Uri) | The data passed for the intent (uses [`Intent.setData(Uri data)`](https://developer.android.com/reference/android/content/Intent#setData(android.net.Uri))). |
-| options.extra     | Object        | All of the extras that are passed for the intent (uses [`Intent.putExtras(Bundle extras)`](https://developer.android.com/reference/android/content/Intent#putExtras(android.os.Bundle))). |
+   `import {openIntent,OpenIntentComponent} from 'react-native-intent-gate'`
 
-More information about Android intents and their structure [here](https://developer.android.com/reference/android/content/Intent#intent-structure).
+4. Code
+
+   `const params = { action: "com.example.app", // only required extra: { key: value, title: "Open intent", requestCode: 12345, }`
+
+   You can call openIntent in two ways:
+
+   1. Open Intent using function
+   
+      `openIntent(params).then(console.log).catch(console.error);`
+
+   2. Use as a component
+   
+      `<OpenIntentComponent invoke={true|false} onResponse={console.log} {...params} />`
+      `/** when props updates from false to true, it will open intent */`
+
+**Roadmap**
+
+- UTs
+- Support on iOS using URL Schema
+- Intent data support on Android

@@ -1,25 +1,33 @@
 apply plugin: 'com.android.library'
 
-def _ext = rootProject.ext;
+def DEFAULT_COMPILE_SDK_VERSION             = 27
+def DEFAULT_BUILD_TOOLS_VERSION             = "27.0.3"
+def DEFAULT_MIN_SDK_VERSION                 = 16
+def DEFAULT_TARGET_SDK_VERSION              = 27
+def DEFAULT_SUPPORT_LIB_VERSION             = "27.0.3"
 
-def _reactNativeVersion = _ext.has('reactNative') ? _ext.reactNative : '+';
-def _compileSdkVersion = _ext.has('compileSdkVersion') ? _ext.compileSdkVersion : 23;
-def _buildToolsVersion = _ext.has('buildToolsVersion') ? _ext.buildToolsVersion : '23.0.1';
-def _minSdkVersion = _ext.has('minSdkVersion') ? _ext.minSdkVersion : 16;
-def _targetSdkVersion = _ext.has('targetSdkVersion') ? _ext.targetSdkVersion : 22;
+def SUPPORT_LIB_VERSION = rootProject.hasProperty('supportLibVersion') ? rootProject.supportLibVersion : DEFAULT_SUPPORT_LIB_VERSION
 
 android {
-    compileSdkVersion _compileSdkVersion
-    buildToolsVersion _buildToolsVersion
+    compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
+    buildToolsVersion rootProject.hasProperty('buildToolsVersion') ? rootProject.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion _minSdkVersion
-        targetSdkVersion _targetSdkVersion
-        versionCode 28
-        versionName "1.2.3"
+        minSdkVersion rootProject.hasProperty('minSdkVersion') ? rootProject.minSdkVersion : DEFAULT_MIN_SDK_VERSION
+        targetSdkVersion rootProject.hasProperty('targetSdkVersion') ? rootProject.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
     }
 }
 
 dependencies {
-    provided "com.facebook.react:react-native:${_reactNativeVersion}"
+    implementation "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
+    api 'com.facebook.react:react-native:+' // support react-native-v0.22-rc+
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
 }

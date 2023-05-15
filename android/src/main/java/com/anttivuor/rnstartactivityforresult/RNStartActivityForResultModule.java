@@ -3,7 +3,8 @@ package com.anttivuor.startactivityforresult;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-
+import android.os.Bundle;
+import java.util.Set;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,18 +72,21 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
         mPromise = promise;
 
         try {
+            Bundle bundle = Arguments.toBundle(data);
+            Set<String> keyList = bundle.keySet();
+
+            for (String key : keyList) {
+            String value = bundle.get(key).toString();
+            Log.d("VPOS-pay","ddddddddddddddddddd" + key + " | " + value);
+            }
+
             String intentAction = options.getString("action") == null ? Intent.ACTION_VIEW : options.getString("action");
             String uri = "vpos_app://vpos";
             Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
             intent.setAction(Intent.ACTION_VIEW);
+
             intent.putExtra("byActive", "OutSideAppr");
             intent.putExtra("byTran", "S0");
-
-            // if (sText.equals("IC신용결제")) intent.putExtra("byTran", "S0");                  // 승인/취소 구분자
-            // else if (sText.equals("IC신용취소"))intent.putExtra("byTran", "S1");             // 승인/취소 구분자
-            // else if ( sText.equals("현금영수증승인")) intent.putExtra("byTran","41");        // 현금영수증 승인 구분자
-            // else if ( sText.equals("현금영수증취소")) intent.putExtra("byTran","42");        // 현금영수증 취소 구분자
-            // else intent.putExtra("byTran", "  ");             // 승인/취소 구분자
 
             intent.putExtra("byTID", "1046889414");              // 단말기번호
             intent.putExtra("byInstall", "00");          // 할부개월수
@@ -102,14 +106,6 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             intent.putExtra("byBUSI", "          ");          //다중사업자번호/사업자번호
 
             intent.putExtra("byDate", getTime().substring(0, 14));             // 거래 요청 일자
-
-
-            // if (options.getString("uri") != null) {
-            //     intent.setData(Uri.parse(options.getString("uri")));
-            // }
-            // if (options.getMap("extra") != null) {
-            //     intent.putExtras(Arguments.toBundle(options.getMap("extra")));
-            // }
 
             returnKey = key;
 
@@ -133,5 +129,4 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
         
     }
 
-    };
 }

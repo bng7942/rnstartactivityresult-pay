@@ -76,7 +76,8 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             String intentAction = action == null ? Intent.ACTION_VIEW : action;
             Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
             intent.setAction(Intent.ACTION_VIEW);
-            Log.d("VPOS-D", , "uri", uri);
+            
+            Log.d("VPOS-D", "uri", uri);
             Log.d("VPOS-D", "byActive", extra.getString("byActive"));
             Log.d("VPOS-D", "byTran", extra.getString("byTran"));
             Log.d("VPOS-D", "byTID", extra.getString("byTID"));

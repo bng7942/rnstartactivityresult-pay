@@ -138,7 +138,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                 JSONObject jsonObj = bundleToJson(dataBundle);
                 mPromise.resolve(jsonObj);
                 mPromise = null;
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 mPromise.reject(e);
                 mPromise = null;

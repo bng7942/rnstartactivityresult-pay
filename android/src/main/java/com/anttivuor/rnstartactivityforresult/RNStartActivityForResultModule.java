@@ -76,27 +76,21 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
             intent.setAction(Intent.ACTION_VIEW);
 
-            // intent.putExtra("byActive", "OutSideAppr");
-            // intent.putExtra("byTran", "S0");
-            // intent.putExtra("byTID", "1046889414");              // 단말기번호
-            // intent.putExtra("byInstall", "00");          // 할부개월수
-            // intent.putExtra("byAmt", "10");              // 총금액
-            // intent.putExtra("byOrgDate", "");          // 원거래일자
-            // intent.putExtra("byOrgAuth", "");          // 원거래승인번호
-            // intent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호
-            // intent.putExtra("byIdno", "");          //현금/수표 식별번호
-            // intent.putExtra("byTaxAmt", "0");          //세금
-            // intent.putExtra("bySfeeAmt", "0");          //봉사료
-            // intent.putExtra("byFreeAmt", "00000000");      //비과세
-            // intent.putExtra("byAppCardNum", "                     ");          // APP 카드번호
-            // intent.putExtra("bySeumGbun", "  ");          // 세움 거래 구분 / 서명 재사용
-            // intent.putExtra("byBUSI", "          ");          //다중사업자번호/사업자번호
-            Bundle bundle = Arguments.toBundle(extra);
-            Set<String> keyList = bundle.keySet();
-            for (String keys : keyList) {
-                String value = bundle.get(keys).toString();
-                intent.putExtra(keys, value);
-            }
+            intent.putExtra("byActive", extra.get("byActive").toString());
+            intent.putExtra("byTran", extra.get("byTran").toString());
+            intent.putExtra("byTID", extra.get("byTID").toString());              // 단말기번호
+            intent.putExtra("byInstall", extra.get("byInstall").toString());          // 할부개월수
+            intent.putExtra("byAmt", extra.get("byAmt").toString());              // 총금액
+            intent.putExtra("byOrgDate", extra.get("byOrgDate").toString());          // 원거래일자
+            intent.putExtra("byOrgAuth", extra.get("byOrgAuth").toString());          // 원거래승인번호
+            intent.putExtra("byTranSerial", extra.get("byTranSerial").toString());          // 거래일련번호
+            intent.putExtra("byIdno", extra.get("byIdno").toString());          //현금/수표 식별번호
+            intent.putExtra("byTaxAmt", extra.get("byTaxAmt").toString());          //세금
+            intent.putExtra("bySfeeAmt", extra.get("bySfeeAmt").toString());          //봉사료
+            intent.putExtra("byFreeAmt", extra.get("byFreeAmt").toString());      //비과세
+            intent.putExtra("byAppCardNum", extra.get("byAppCardNum").toString());          // APP 카드번호
+            intent.putExtra("bySeumGbun", extra.get("bySeumGbun").toString());          // 세움 거래 구분 / 서명 재사용
+            intent.putExtra("byBUSI", extra.get("byBUSI").toString());          //다중사업자번호/사업자번호
 
             intent.putExtra("byDate", getTime().substring(0, 14));             // 거래 요청 일자
 

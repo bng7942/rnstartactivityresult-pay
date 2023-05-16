@@ -242,7 +242,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                 Bundle dataBundle = data.getExtras();
                 JSONObject jsonObj = bundleToJson(dataBundle);
                 WritableMap result = convertJsonToMap(jsonObj);
-                mPromise.resolve(resultCode, result);
+                mPromise.resolve(result);
                 mPromise = null;
             } catch (JSONException e) {
                 e.printStackTrace();

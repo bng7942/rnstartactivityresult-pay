@@ -60,7 +60,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void startActivityForResult(String key, ReadableMap options, Promise promise) {
+    public void startActivityForResult(String key, String uri, String action, ReadableMap extra, Promise promise) {
         Activity currentActivity = getCurrentActivity();
 
         if (currentActivity == null) {
@@ -72,8 +72,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
 
         try {
             
-            String intentAction = options.getString("action") == null ? Intent.ACTION_VIEW : options.getString("action");
-            String uri = options.getString("uri");
+            String intentAction = action == null ? Intent.ACTION_VIEW : action;
             Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
             intent.setAction(Intent.ACTION_VIEW);
 
@@ -92,7 +91,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             // intent.putExtra("byAppCardNum", "                     ");          // APP 카드번호
             // intent.putExtra("bySeumGbun", "  ");          // 세움 거래 구분 / 서명 재사용
             // intent.putExtra("byBUSI", "          ");          //다중사업자번호/사업자번호
-            Bundle bundle = Arguments.toBundle(options.getString("extra"));
+            Bundle bundle = Arguments.toBundle(extra);
             Set<String> keyList = bundle.keySet();
             for (String keys : keyList) {
                 String value = bundle.get(keys).toString();

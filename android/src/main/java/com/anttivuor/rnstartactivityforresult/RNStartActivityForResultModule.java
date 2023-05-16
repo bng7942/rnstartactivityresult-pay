@@ -74,7 +74,8 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void startActivityForResult(String key, String uri, String action, 
         String byTran, String byTID, String byInstall, String byAmt, 
-        String byTaxAmt, String bySfeeAmt, String byFreeAmt, Promise promise) {
+        String byTaxAmt, String bySfeeAmt, String byFreeAmt, String oriDate, 
+        String byOrgAuth, String idno Promise promise) {
 
         Activity currentActivity = getCurrentActivity();
 
@@ -95,11 +96,11 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             intent.putExtra("byTran", byTran);
             intent.putExtra("byTID", byTID);              // 단말기번호
             intent.putExtra("byInstall", byInstall);          // 할부개월수
-            intent.putExtra("byAmt", byAmt);              // 총금액
-            intent.putExtra("byOrgDate", "");          // 원거래일자
-            intent.putExtra("byOrgAuth", "");          // 원거래승인번호
+            intent.putExtra("byAmt", "10");              // 총금액
+            intent.putExtra("byOrgDate", byOrgDate);          // 원거래일자
+            intent.putExtra("byOrgAuth", byOrgAuth);          // 원거래승인번호
             intent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호
-            intent.putExtra("byIdno", "");          //현금/수표 식별번호
+            intent.putExtra("byIdno", byIdno);          //현금/수표 식별번호
             intent.putExtra("byTaxAmt", "0");          //세금
             intent.putExtra("bySfeeAmt", "0");          //봉사료
             intent.putExtra("byFreeAmt", "00000000");      //비과세

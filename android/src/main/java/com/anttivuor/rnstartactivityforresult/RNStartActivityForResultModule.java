@@ -184,7 +184,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
         @Override
         public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-            if (requestCode == ACTIVITY_REQUEST_CODE) {
+            // if (requestCode == ACTIVITY_REQUEST_CODE) {
                 // String rtn_Tran = data.getStringExtra("rtn_Tran");
                 // String rtn_LEDCode = data.getStringExtra("rtn_LEDCode");
                 // String rtn_CardBinNum = data.getStringExtra("rtn_CardBinNum");
@@ -208,12 +208,12 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                 // String rtn_VANUnqTranNum = data.getStringExtra("rtn_VANUnqTranNum");
 
 
-                Bundle dataBundle = data.getExtras();
-                JSONObject jsonObj = bundleToJson(dataBundle);
-                WritableMap result = convertJsonToMap(jsonObj);
-                mPromise.resolve(resultCode, result);
+                // Bundle dataBundle = data.getExtras();
+                // JSONObject jsonObj = bundleToJson(dataBundle);
+                // WritableMap result = convertJsonToMap(jsonObj);
+                // mPromise.resolve(resultCode, result);
 
-                mPromise = null;
+                // mPromise = null;
 
                 // if (resultCode == MSG_STATE_OK) {
                 //     Log.d("VPOS-D","dKKKKKKKKKKKKKKKKKKdd");
@@ -236,18 +236,19 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                 // }else{
                 //     //Log.d(TAG,"resultCode = "+ resultCode);
                 // }
-            }
-
-            // try {
-            //     Bundle dataBundle = data.getExtras();
-            //     JSONObject jsonObj = bundleToJson(dataBundle);
-            //     mPromise.resolve(jsonObj);
-            //     mPromise = null;
-            // } catch (Exception e) {
-            //     e.printStackTrace();
-            //     mPromise.reject(e);
-            //     mPromise = null;
             // }
+
+            try {
+                Bundle dataBundle = data.getExtras();
+                JSONObject jsonObj = bundleToJson(dataBundle);
+                WritableMap result = convertJsonToMap(jsonObj);
+                mPromise.resolve(resultCode, result);
+                mPromise = null;
+            } catch (JSONException e) {
+                e.printStackTrace();
+                mPromise.reject(e);
+                mPromise = null;
+            }
         }
     };
 }

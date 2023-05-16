@@ -73,9 +73,9 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
         try {
             Bundle bundle = Arguments.toBundle(options);
             Set<String> keyList = bundle.keySet();
-            for (String key : keyList) {
-                String value = bundle.get(key).toString();
-                Log.d("VPOS-D","ddddddddddddddddddd" + key + " | " + value);
+            for (String keys : keyList) {
+                String value = bundle.get(keys).toString();
+                Log.d("VPOS-D","ddddddddddddddddddd" + keys + " | " + value);
             }
 
             String intentAction = options.getString("action") == null ? Intent.ACTION_VIEW : options.getString("action");

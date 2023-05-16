@@ -74,8 +74,8 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void startActivityForResult(String key, String uri, String action, 
         String byTran, String byTID, String byInstall, String byAmt, 
-        String byTaxAmt, String bySfeeAmt, String byFreeAmt, String oriDate, 
-        String byOrgAuth, String idno, Promise promise) {
+        String byTaxAmt, String bySfeeAmt, String byFreeAmt, String byOrgDate, 
+        String byOrgAuth, String byIdno, Promise promise) {
 
         Activity currentActivity = getCurrentActivity();
 

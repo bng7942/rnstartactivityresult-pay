@@ -1,9 +1,21 @@
-type Options = {
-    action?: string,
-    uri?: string,
-    extra?: Object,
+type extra = {
+    byActive: string,
+    byTran: string,
+    byTID: string,
+    byInstall: string,
+    byAmt: string,
+    byOrgDate: string,
+    byOrgAuth: string,
+    byTranSerial: string,
+    byIdno: string,
+    byTaxAmt: string,
+    bySfeeAmt: string,
+    byFreeAmt: string,
+    byAppCardNum: string,
+    bySeumGbun: string,
+    byBUSI: string,
 };
-
-declare type startActivityForResult = (key: string, options: Options) => void
+key, uri, action, extra
+declare type startActivityForResult = (key: string, uri: string, action: string, extra: extra) => void
 
 export = startActivityForResult

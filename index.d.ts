@@ -1,21 +1,7 @@
-type extras = {
-    byActive: string,
-    byTran: string,
-    byTID: string,
-    byInstall: string,
-    byAmt: string,
-    byOrgDate: string,
-    byOrgAuth: string,
-    byTranSerial: string,
-    byIdno: string,
-    byTaxAmt: string,
-    bySfeeAmt: string,
-    byFreeAmt: string,
-    byAppCardNum: string,
-    bySeumGbun: string,
-    byBUSI: string,
-};
-key, uri, action, extra
-declare type startActivityForResult = (key: string, uri: string, action: string, extras: extras) => void
+
+declare type startActivityForResult = (key:String, uri:String, action:String, 
+    byTran:String, byTID:String, byInstall:String, byAmt:String, byOrgDate:String,
+    byOrgAuth:String, byTranSerial:String, byIdno:String, byTaxAmt:String,
+    bySfeeAmt:String, byFreeAmt:String) => void
 
 export = startActivityForResult

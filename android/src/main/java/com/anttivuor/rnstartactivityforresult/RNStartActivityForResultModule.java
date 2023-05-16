@@ -156,7 +156,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                 // Bundle dataBundle = data.getExtras();
                 // JSONObject jsonObj = bundleToJson(dataBundle);
                 mPromise.resolve(
-                    resultCode, rtn_Tran, rtn_LEDCode, rtn_CardBinNum, rtn_Install,
+                    resultCode.toString(), rtn_Tran, rtn_LEDCode, rtn_CardBinNum, rtn_Install,
                     rtn_AmountNum, rtn_TaxNum, rtn_SevDate, rtn_SevTime, rtn_Authno,
                     rtn_CreditMbrCode, rtn_IssuerName, rtn_PurchaseName, rtn_ServerMsg1,
                     rtn_PrintMsg1, rtn_IssuerCode, rtn_PurchaseCode, rtn_BalPoint,

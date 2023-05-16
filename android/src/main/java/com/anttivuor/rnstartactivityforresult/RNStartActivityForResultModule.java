@@ -101,9 +101,9 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             intent.putExtra("byOrgAuth", byOrgAuth);          // 원거래승인번호
             intent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호
             intent.putExtra("byIdno", byIdno);          //현금/수표 식별번호
-            intent.putExtra("byTaxAmt", "0");          //세금
-            intent.putExtra("bySfeeAmt", "0");          //봉사료
-            intent.putExtra("byFreeAmt", "00000000");      //비과세
+            intent.putExtra("byTaxAmt", byTaxAmt);          //세금
+            intent.putExtra("bySfeeAmt", bySfeeAmt);          //봉사료
+            intent.putExtra("byFreeAmt", byFreeAmt);      //비과세
             intent.putExtra("byAppCardNum", "                     ");          // APP 카드번호
             intent.putExtra("bySeumGbun", "  ");          // 세움 거래 구분 / 서명 재사용
             intent.putExtra("byBUSI", "          ");          //다중사업자번호/사업자번호

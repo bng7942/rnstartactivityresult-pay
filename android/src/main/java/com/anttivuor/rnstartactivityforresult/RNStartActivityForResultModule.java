@@ -23,6 +23,7 @@ import com.facebook.react.bridge.ReadableMap;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import android.util.Log;
 
 public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     private static final String ERROR = "ERROR";
@@ -75,6 +76,21 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             String intentAction = action == null ? Intent.ACTION_VIEW : action;
             Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
             intent.setAction(Intent.ACTION_VIEW);
+            Log.d("VPOS-D", , "uri", uri);
+            Log.d("VPOS-D", "byActive", extra.getString("byActive"));
+            Log.d("VPOS-D", "byTran", extra.getString("byTran"));
+            Log.d("VPOS-D", "byTID", extra.getString("byTID"));
+            Log.d("VPOS-D", "byAmt", extra.getString("byAmt"));
+            Log.d("VPOS-D", "byOrgDate", extra.getString("byOrgDate"));
+            Log.d("VPOS-D", "byOrgAuth", extra.getString("byOrgAuth"));
+            Log.d("VPOS-D", "byTranSerial", extra.getString("byTranSerial"));
+            Log.d("VPOS-D", "byIdno", extra.getString("byIdno"));
+            Log.d("VPOS-D", "byTaxAmt", extra.getString("byTaxAmt"));
+            Log.d("VPOS-D", "bySfeeAmt", extra.getString("bySfeeAmt"));
+            Log.d("VPOS-D", "byFreeAmt", extra.getString("byFreeAmt"));
+            Log.d("VPOS-D", "byAppCardNum", extra.getString("byAppCardNum"));
+            Log.d("VPOS-D", "bySeumGbun", extra.getString("bySeumGbun"));
+            Log.d("VPOS-D", "byBUSI", extra.getString("byBUSI"));
 
             intent.putExtra("byActive", extra.getString("byActive"));
             intent.putExtra("byTran", extra.getString("byTran"));

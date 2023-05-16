@@ -5,9 +5,9 @@
 import { NativeModules } from "react-native";
 var RNStartActivityForResult = NativeModules.RNStartActivityForResult || {};
 
-var startActivityForResult = (key, uri, action, byTran, byTID) => {
-    alert(`RNStartActivityForResult : ${JSON.stringify(RNStartActivityForResult)}`)
-    return RNStartActivityForResult.startActivityForResult(key, uri, action, byTran, byTID);
+var startActivityForResult = (key, uri, action, byTran, byTID, byInstall, byAmt, byTaxAmt, bySfeeAmt, byFreeAmt) => {
+    
+    return RNStartActivityForResult.startActivityForResult(key, uri, action, byTran, byTID, byInstall, byAmt, byTaxAmt, bySfeeAmt, byFreeAmt);
 };
 
 export default startActivityForResult;

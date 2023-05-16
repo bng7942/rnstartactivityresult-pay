@@ -72,42 +72,26 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
         mPromise = promise;
 
         try {
-            
+            Log.d("VPOS-D", uri);
             String intentAction = action == null ? Intent.ACTION_VIEW : action;
             Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
             intent.setAction(Intent.ACTION_VIEW);
 
-            Log.d("VPOS-D", "uri", uri.toString());
-            Log.d("VPOS-D", "byActive", extra.getString("byActive").toString());
-            Log.d("VPOS-D", "byTran", extra.getString("byTran").toString());
-            Log.d("VPOS-D", "byTID", extra.getString("byTID").toString());
-            Log.d("VPOS-D", "byAmt", extra.getString("byAmt").toString());
-            Log.d("VPOS-D", "byOrgDate", extra.getString("byOrgDate").toString());
-            Log.d("VPOS-D", "byOrgAuth", extra.getString("byOrgAuth").toString());
-            Log.d("VPOS-D", "byTranSerial", extra.getString("byTranSerial").toString());
-            Log.d("VPOS-D", "byIdno", extra.getString("byIdno").toString());
-            Log.d("VPOS-D", "byTaxAmt", extra.getString("byTaxAmt").toString());
-            Log.d("VPOS-D", "bySfeeAmt", extra.getString("bySfeeAmt").toString());
-            Log.d("VPOS-D", "byFreeAmt", extra.getString("byFreeAmt").toString());
-            Log.d("VPOS-D", "byAppCardNum", extra.getString("byAppCardNum").toString());
-            Log.d("VPOS-D", "bySeumGbun", extra.getString("bySeumGbun").toString());
-            Log.d("VPOS-D", "byBUSI", extra.getString("byBUSI").toString());
-
-            intent.putExtra("byActive", extra.getString("byActive").toString());
-            intent.putExtra("byTran", extra.getString("byTran").toString());
-            intent.putExtra("byTID", extra.getString("byTID").toString());              // 단말기번호
-            intent.putExtra("byInstall", extra.getString("byInstall").toString());          // 할부개월수
-            intent.putExtra("byAmt", extra.getString("byAmt").toString());              // 총금액
-            intent.putExtra("byOrgDate", extra.getString("byOrgDate").toString());          // 원거래일자
-            intent.putExtra("byOrgAuth", extra.getString("byOrgAuth").toString());          // 원거래승인번호
-            intent.putExtra("byTranSerial", extra.getString("byTranSerial").toString());          // 거래일련번호
-            intent.putExtra("byIdno", extra.getString("byIdno").toString());          //현금/수표 식별번호
-            intent.putExtra("byTaxAmt", extra.getString("byTaxAmt").toString());          //세금
-            intent.putExtra("bySfeeAmt", extra.getString("bySfeeAmt").toString());          //봉사료
-            intent.putExtra("byFreeAmt", extra.getString("byFreeAmt").toString());      //비과세
-            intent.putExtra("byAppCardNum", extra.getString("byAppCardNum").toString());          // APP 카드번호
-            intent.putExtra("bySeumGbun", extra.getString("bySeumGbun").toString());          // 세움 거래 구분 / 서명 재사용
-            intent.putExtra("byBUSI", extra.getString("byBUSI").toString());          //다중사업자번호/사업자번호
+            intent.putExtra("byActive", "OutSideAppr");
+            intent.putExtra("byTran", "S0");
+            intent.putExtra("byTID", "1046889414");              // 단말기번호
+            intent.putExtra("byInstall", "00");          // 할부개월수
+            intent.putExtra("byAmt", "10");              // 총금액
+            intent.putExtra("byOrgDate", "");          // 원거래일자
+            intent.putExtra("byOrgAuth", "");          // 원거래승인번호
+            intent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호
+            intent.putExtra("byIdno", "");          //현금/수표 식별번호
+            intent.putExtra("byTaxAmt", "0");          //세금
+            intent.putExtra("bySfeeAmt", "0");          //봉사료
+            intent.putExtra("byFreeAmt", "00000000");      //비과세
+            intent.putExtra("byAppCardNum", "                     ");          // APP 카드번호
+            intent.putExtra("bySeumGbun", "  ");          // 세움 거래 구분 / 서명 재사용
+            intent.putExtra("byBUSI", "          ");          //다중사업자번호/사업자번호
 
             intent.putExtra("byDate", getTime().substring(0, 14));             // 거래 요청 일자
 

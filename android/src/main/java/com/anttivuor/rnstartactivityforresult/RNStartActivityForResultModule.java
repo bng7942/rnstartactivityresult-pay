@@ -6,6 +6,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import java.util.Set;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,7 +65,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void startActivityForResult(String key, String uri, String action, ReadableMap extra, Promise promise) {
+    public void startActivityForResult(String key, String uri, String action, Map<String, String> extras, Promise promise) {
         Activity currentActivity = getCurrentActivity();
 
         if (currentActivity == null) {
@@ -77,21 +81,25 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
             intent.setAction(Intent.ACTION_VIEW);
 
-            intent.putExtra("byActive", "OutSideAppr");
-            intent.putExtra("byTran", "S0");
-            intent.putExtra("byTID", "1046889414");              // 단말기번호
-            intent.putExtra("byInstall", "00");          // 할부개월수
-            intent.putExtra("byAmt", "10");              // 총금액
-            intent.putExtra("byOrgDate", "");          // 원거래일자
-            intent.putExtra("byOrgAuth", "");          // 원거래승인번호
-            intent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호
-            intent.putExtra("byIdno", "");          //현금/수표 식별번호
-            intent.putExtra("byTaxAmt", "0");          //세금
-            intent.putExtra("bySfeeAmt", "0");          //봉사료
-            intent.putExtra("byFreeAmt", "00000000");      //비과세
-            intent.putExtra("byAppCardNum", "                     ");          // APP 카드번호
-            intent.putExtra("bySeumGbun", "  ");          // 세움 거래 구분 / 서명 재사용
-            intent.putExtra("byBUSI", "          ");          //다중사업자번호/사업자번호
+            for (String keys : extras.keySet()) {
+                String value = extras.get(keys);
+                intent.putExtra(keys, value);
+            }
+            // intent.putExtra("byActive", "OutSideAppr");
+            // intent.putExtra("byTran", "S0");
+            // intent.putExtra("byTID", "1046889414");              // 단말기번호
+            // intent.putExtra("byInstall", "00");          // 할부개월수
+            // intent.putExtra("byAmt", "10");              // 총금액
+            // intent.putExtra("byOrgDate", "");          // 원거래일자
+            // intent.putExtra("byOrgAuth", "");          // 원거래승인번호
+            // intent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호
+            // intent.putExtra("byIdno", "");          //현금/수표 식별번호
+            // intent.putExtra("byTaxAmt", "0");          //세금
+            // intent.putExtra("bySfeeAmt", "0");          //봉사료
+            // intent.putExtra("byFreeAmt", "00000000");      //비과세
+            // intent.putExtra("byAppCardNum", "                     ");          // APP 카드번호
+            // intent.putExtra("bySeumGbun", "  ");          // 세움 거래 구분 / 서명 재사용
+            // intent.putExtra("byBUSI", "          ");          //다중사업자번호/사업자번호
 
             intent.putExtra("byDate", getTime().substring(0, 14));             // 거래 요청 일자
 
@@ -104,12 +112,35 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
         }
     }
 
+    private static final JSONObject bundleToJson(Bundle bundle) {
+        JSONObject json = new JSONObject();
+        Set<String> keys = bundle.keySet();
+        for (String key : keys) {
+        try{
+            json.put(key, bundle.get(key));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        }
+        return json;
+    }
+  
     private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
         @Override
         public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-            if (data != null) {
-                String returnValue = data.getStringExtra(returnKey);
-                mPromise.resolve(data);
+            // if (data != null) {
+            //     String returnValue = data.getStringExtra(returnKey);
+            //     mPromise.resolve(data);
+            //     mPromise = null;
+            // }
+            try {
+                Bundle dataBundle = data.getExtras();
+                JSONObject jsonObj = bundleToJson(dataBundle);
+                mPromise.resolve(jsonObj);
+                mPromise = null;
+            } catch (JSONException e) {
+                e.printStackTrace();
+                mPromise.reject(e);
                 mPromise = null;
             }
         }

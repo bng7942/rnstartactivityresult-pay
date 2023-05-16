@@ -1,4 +1,4 @@
-type extra = {
+type extras = {
     byActive: string,
     byTran: string,
     byTID: string,
@@ -16,6 +16,6 @@ type extra = {
     byBUSI: string,
 };
 key, uri, action, extra
-declare type startActivityForResult = (key: string, uri: string, action: string, extra: extra) => void
+declare type startActivityForResult = (key: string, uri: string, action: string, extras: extras) => void
 
 export = startActivityForResult

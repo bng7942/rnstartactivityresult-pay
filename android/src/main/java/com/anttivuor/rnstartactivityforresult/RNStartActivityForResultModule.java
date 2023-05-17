@@ -96,7 +96,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             intent.putExtra("byTran", byTran);
             intent.putExtra("byTID", byTID);              // 단말기번호
             intent.putExtra("byInstall", byInstall);          // 할부개월수
-            intent.putExtra("byAmt", "10");              // 총금액
+            intent.putExtra("byAmt", byAmt);              // 총금액
             intent.putExtra("byOrgDate", byOrgDate);          // 원거래일자
             intent.putExtra("byOrgAuth", byOrgAuth);          // 원거래승인번호
             intent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호

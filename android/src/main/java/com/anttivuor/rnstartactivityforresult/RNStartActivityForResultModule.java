@@ -185,59 +185,6 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
         @Override
         public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-            // if (requestCode == ACTIVITY_REQUEST_CODE) {
-                // String rtn_Tran = data.getStringExtra("rtn_Tran");
-                // String rtn_LEDCode = data.getStringExtra("rtn_LEDCode");
-                // String rtn_CardBinNum = data.getStringExtra("rtn_CardBinNum");
-                // String rtn_Install = data.getStringExtra("rtn_Install");
-                // String rtn_AmountNum = data.getStringExtra("rtn_AmountNum");
-                // String rtn_TaxNum = data.getStringExtra("rtn_TaxNum");
-                // String rtn_SevDate = data.getStringExtra("rtn_SevDate");
-                // String rtn_SevTime = data.getStringExtra("rtn_SevTime");
-                // String rtn_Authno = data.getStringExtra("rtn_Authno");
-                // String rtn_CreditMbrCode = data.getStringExtra("rtn_CreditMbrCode");
-                // String rtn_IssuerName = data.getStringExtra("rtn_IssuerName");
-                // String rtn_PurchaseName = data.getStringExtra("rtn_PurchaseName");
-                // String rtn_ServerMsg1 = data.getStringExtra("rtn_ServerMsg1");
-                // String rtn_PrintMsg1 = data.getStringExtra("rtn_PrintMsg1");
-                // String rtn_IssuerCode = data.getStringExtra("rtn_IssuerCode");
-                // String rtn_PurchaseCode = data.getStringExtra("rtn_PurchaseCode");
-                // String rtn_BalPoint = data.getStringExtra("rtn_BalPoint");
-                // String rtn_GaPoint = data.getStringExtra("rtn_GaPoint");
-                // String rtn_NuPoint = data.getStringExtra("rtn_NuPoint");
-                // String rtn_CardTypeGubun = data.getStringExtra("rtn_CardTypeGubun");
-                // String rtn_VANUnqTranNum = data.getStringExtra("rtn_VANUnqTranNum");
-
-
-                // Bundle dataBundle = data.getExtras();
-                // JSONObject jsonObj = bundleToJson(dataBundle);
-                // WritableMap result = convertJsonToMap(jsonObj);
-                // mPromise.resolve(resultCode, result);
-
-                // mPromise = null;
-
-                // if (resultCode == MSG_STATE_OK) {
-                //     Log.d("VPOS-D","dKKKKKKKKKKKKKKKKKKdd");
-                //     String AuthNo = data.getStringExtra("rtn_Authno");
-                //     inputAuthNo.setText(AuthNo);
-
-                //     Intent intent = new Intent(MainActivity.this, ReceiptActivity.class);
-                //     //intent.putExtra("byActive", byData1);           // 거래 구분자
-                //     intent.putExtras(data);
-                //     startActivity(intent);
-
-                // }else if(resultCode == MSG_STATE_NG){
-                //     Log.d("VPOS-D","dNNNNNNNNNNNNNNNNNNNNNNd");
-                //     String errMSG = data.getStringExtra("rtn_ServerMsg1");
-                //     String errCODE = data.getStringExtra("rtn_LEDCode");
-                //     String Msgebuf = "[" + errCODE + "] : " + errMSG;
-                //     Toast.makeText(this, Msgebuf, Toast.LENGTH_SHORT).show();
-
-
-                // }else{
-                //     //Log.d(TAG,"resultCode = "+ resultCode);
-                // }
-            // }
 
             try {
                 Bundle dataBundle = data.getExtras();

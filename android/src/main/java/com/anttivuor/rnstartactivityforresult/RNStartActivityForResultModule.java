@@ -115,7 +115,13 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
 
             currentActivity.startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
         } catch (Exception e) {
-            mPromise.reject(ERROR, e);
+            JSONObject jsonObj = new JSONObject();
+                    
+            jsonObj.put("rtn_ServerMsg1", e.getMessage());
+            jsonObj.put("rtn_LEDCode", "7070");
+
+            mPromise.resolve(jsonObj);
+            // mPromise.reject(ERROR, e);
             mPromise = null;
         }
     }
@@ -228,6 +234,13 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
 
                 }else{
                     //Log.d(TAG,"resultCode = "+ resultCode);
+                    JSONObject jsonObj = new JSONObject();
+                    
+                    jsonObj.put("rtn_ServerMsg1", "문제발생.. 직원에게 문의하세요.");
+                    jsonObj.put("rtn_LEDCode", "6060");
+
+                    mPromise.resolve(jsonObj);
+                    mPromise = null;
                 }
             }
 

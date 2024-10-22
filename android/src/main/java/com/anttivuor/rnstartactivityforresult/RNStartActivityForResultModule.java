@@ -38,6 +38,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     private static final String ERROR = "ERROR";
     private static final String ACTIVITY_DOES_NOT_EXIST = "ACTIVITY_DOES_NOT_EXIST";
     private static final int ACTIVITY_REQUEST_CODE = 4;
+    public static final int MSG_REQUEST_OUTSIDEAPPR = 4;
     public static final int MSG_STATE_OK = 1;
     public static final int MSG_STATE_NG = 2;
     private String returnKey = "";
@@ -186,17 +187,61 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
         @Override
         public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
 
-            try {
-                Bundle dataBundle = data.getExtras();
-                JSONObject jsonObj = bundleToJson(dataBundle);
-                WritableMap result = convertJsonToMap(jsonObj);
-                mPromise.resolve(result);
-                mPromise = null;
-            } catch (JSONException e) {
-                e.printStackTrace();
-                mPromise.reject(e);
-                mPromise = null;
+            if (requestCode == MSG_REQUEST_OUTSIDEAPPR) {
+                if (resultCode == MSG_STATE_OK) {
+                    Log.d("VPOS-D","dKKKKKKKKKKKKKKKKKKdd");
+                    JSONObject jsonObj = new JSONObject();
+
+                    jsonObj.put("rtn_Tran", data.getStringExtra("rtn_Tran"));
+                    jsonObj.put("rtn_LEDCode", data.getStringExtra("rtn_LEDCode"));
+                    jsonObj.put("rtn_CardBinNum", data.getStringExtra("rtn_CardBinNum"));
+                    jsonObj.put("rtn_Install", data.getStringExtra("rtn_Install"));
+                    jsonObj.put("rtn_AmountNum", data.getStringExtra("rtn_AmountNum"));
+                    jsonObj.put("rtn_SevDate", data.getStringExtra("rtn_SevDate"));
+                    jsonObj.put("rtn_SevTime", data.getStringExtra("rtn_SevTime"));
+                    jsonObj.put("rtn_Authno", data.getStringExtra("rtn_Authno"));
+                    jsonObj.put("rtn_CreditMbrCode", data.getStringExtra("rtn_CreditMbrCode"));
+                    jsonObj.put("rtn_VANUnqTranNum", data.getStringExtra("rtn_VANUnqTranNum"));
+                    jsonObj.put("rtn_IssuerName", data.getStringExtra("rtn_IssuerName"));
+                    jsonObj.put("rtn_PurchaseName", data.getStringExtra("rtn_PurchaseName"));
+                    jsonObj.put("rtn_ServerMsg1", data.getStringExtra("rtn_ServerMsg1"));
+                    jsonObj.put("rtn_PrintMsg1", data.getStringExtra("rtn_PrintMsg1"));
+                    jsonObj.put("rtn_CardTypeGubun", data.getStringExtra("rtn_CardTypeGubun"));
+
+                    mPromise.resolve(jsonObj);
+                    mPromise = null;
+
+                }else if(resultCode == MSG_STATE_NG){
+                    Log.d("VPOS-D","dNNNNNNNNNNNNNNNNNNNNNNd");
+                    JSONObject jsonObj = new JSONObject();
+                    
+                    jsonObj.put("rtn_ServerMsg1", data.getStringExtra("rtn_ServerMsg1"));
+                    jsonObj.put("rtn_LEDCode", data.getStringExtra("rtn_LEDCode"));
+
+                    // String errMSG = data.getStringExtra("rtn_ServerMsg1");
+                    // String errCODE = data.getStringExtra("rtn_LEDCode");
+                    // String Msgebuf = "[" + errCODE + "] : " + errMSG;
+                    // Toast.makeText(this, Msgebuf, Toast.LENGTH_SHORT).show();
+                    
+                    mPromise.resolve(jsonObj);
+                    mPromise = null;
+
+                }else{
+                    //Log.d(TAG,"resultCode = "+ resultCode);
+                }
             }
+
+            // try {
+            //     Bundle dataBundle = data.getExtras();
+            //     JSONObject jsonObj = bundleToJson(dataBundle);
+            //     WritableMap result = convertJsonToMap(jsonObj);
+            //     mPromise.resolve(result);
+            //     mPromise = null;
+            // } catch (JSONException e) {
+            //     e.printStackTrace();
+            //     mPromise.reject(e);
+            //     mPromise = null;
+            // }
         }
     };
 }

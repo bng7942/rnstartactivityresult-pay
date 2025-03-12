@@ -91,29 +91,41 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             Log.d("VPOS-D", uri);
             String intentAction = action == null ? Intent.ACTION_VIEW : action;
             Intent intent = new Intent(Intent.ACTION_MAIN, Uri.parse(uri));
-            intent.setAction(Intent.ACTION_VIEW);
-            
-            intent.putExtra("byActive", "OutSideAppr");
-            intent.putExtra("byTran", byTran);
-            intent.putExtra("byTID", byTID);              // 단말기번호
-            intent.putExtra("byInstall", byInstall);          // 할부개월수
-            intent.putExtra("byAmt", byAmt);              // 총금액
-            intent.putExtra("byOrgDate", byOrgDate);          // 원거래일자
-            intent.putExtra("byOrgAuth", byOrgAuth);          // 원거래승인번호
-            intent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호
-            intent.putExtra("byIdno", byIdno);          //현금/수표 식별번호
-            intent.putExtra("byTaxAmt", byTaxAmt);          //세금
-            intent.putExtra("bySfeeAmt", bySfeeAmt);          //봉사료
-            intent.putExtra("byFreeAmt", byFreeAmt);      //비과세
-            intent.putExtra("byAppCardNum", "                     ");          // APP 카드번호
-            intent.putExtra("bySeumGbun", "  ");          // 세움 거래 구분 / 서명 재사용
-            intent.putExtra("byBUSI", "          ");          //다중사업자번호/사업자번호
 
-            intent.putExtra("byDate", getTime().substring(0, 14));             // 거래 요청 일자
+            if (intent != null) {
+                intent.setAction(Intent.ACTION_VIEW);
+                
+                intent.putExtra("byActive", "OutSideAppr");
+                intent.putExtra("byTran", byTran);
+                intent.putExtra("byTID", byTID);              // 단말기번호
+                intent.putExtra("byInstall", byInstall);          // 할부개월수
+                intent.putExtra("byAmt", byAmt);              // 총금액
+                intent.putExtra("byOrgDate", byOrgDate);          // 원거래일자
+                intent.putExtra("byOrgAuth", byOrgAuth);          // 원거래승인번호
+                intent.putExtra("byTranSerial", getTime().substring(8, 14));          // 거래일련번호
+                intent.putExtra("byIdno", byIdno);          //현금/수표 식별번호
+                intent.putExtra("byTaxAmt", byTaxAmt);          //세금
+                intent.putExtra("bySfeeAmt", bySfeeAmt);          //봉사료
+                intent.putExtra("byFreeAmt", byFreeAmt);      //비과세
+                intent.putExtra("byAppCardNum", "                     ");          // APP 카드번호
+                intent.putExtra("bySeumGbun", "  ");          // 세움 거래 구분 / 서명 재사용
+                intent.putExtra("byBUSI", "          ");          //다중사업자번호/사업자번호
 
-            returnKey = key;
+                intent.putExtra("byDate", getTime().substring(0, 14));             // 거래 요청 일자
 
-            currentActivity.startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
+                returnKey = key;
+
+                currentActivity.startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
+            }else{
+                JSONObject jsonObj = new JSONObject();
+                        
+                jsonObj.put("rtn_ServerMsg1", "intent is null");
+                jsonObj.put("rtn_LEDCode", "8080");
+
+                mPromise.resolve(jsonObj);
+                // mPromise.reject(ERROR, e);
+                mPromise = null;
+            }
         } catch (Exception e) {
             JSONObject jsonObj = new JSONObject();
                     

@@ -2,6 +2,7 @@
 
 React Native implementation for Android's native `startActivityForResult()` and `onActivityResult()` methods. This can be used for integrations with other apps that require using the previously mentioned methods.
 
+
 ##  Usage
 
 ```

@@ -130,9 +130,11 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
             currentActivity.startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
         } catch (Exception e) {
             JSONObject jsonObj = new JSONObject();
-                    
-            jsonObj.put("rtn_ServerMsg1", e.getMessage());
-            jsonObj.put("rtn_LEDCode", "7070");
+            safePut(jsonObj, "rtn_ServerMsg1", e.getMessage());
+            safePut(jsonObj, "rtn_LEDCode", "7070");
+
+            // jsonObj.put("rtn_ServerMsg1", e.getMessage());
+            // jsonObj.put("rtn_LEDCode", "7070");
 
             mPromise.resolve(jsonObj);
             // mPromise.reject(ERROR, e);

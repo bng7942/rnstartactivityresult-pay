@@ -244,6 +244,15 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                         mPromise.resolve(jsonObj);
                         // mPromise = null;
                     }
+                }  catch (Exception e) {
+                    JSONObject jsonObj = new JSONObject();
+                            
+                    jsonObj.put("rtn_ServerMsg1", e.getMessage());
+                    jsonObj.put("rtn_LEDCode", "7070");
+
+                    mPromise.resolve(jsonObj);
+                    // mPromise.reject(ERROR, e);
+                    // mPromise = null;
                 } finally {
                     mPromise = null;
                 }

@@ -72,6 +72,20 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
         return dayTime.format(new Date(time));
     }
 
+    /** JSONObject.put(...)의 JSONException을 내부에서 처리하는 안전한 put */
+    private static void safePut(JSONObject obj, String key, Object value) {
+        try {
+            obj.put(key, value != null ? value : JSONObject.NULL);
+        } catch (JSONException ignored) {
+            // 필요시 Log.e("RNStartActivityForResult", "JSON put error: " + key, ignored);
+        }
+    }
+
+    /** Intent가 null일 수도 있으므로 안전하게 extra를 꺼내는 헬퍼 */
+    private static String getExtra(Intent data, String key) {
+        return data != null ? data.getStringExtra(key) : null;
+    }
+
     @ReactMethod
     public void startActivityForResult(String key, String uri, String action, 
         String byTran, String byTID, String byInstall, String byAmt, 

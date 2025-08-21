@@ -195,9 +195,9 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
 
             if (requestCode == MSG_REQUEST_OUTSIDEAPPR) {
                 try {
-                    JSONObject jsonObj = new JSONObject();
-
+                    
                     if (resultCode == MSG_STATE_OK) {
+                        JSONObject jsonObj = new JSONObject();
                         Log.d("VPOS-D","dKKKKKKKKKKKKKKKKKKdd");
 
                         jsonObj.put("rtn_Tran", data.getStringExtra("rtn_Tran"));
@@ -220,6 +220,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                         // mPromise = null;
 
                     }else if(resultCode == MSG_STATE_NG){
+                        JSONObject jsonObj = new JSONObject();
                         Log.d("VPOS-D","dNNNNNNNNNNNNNNNNNNNNNNd");
                         
                         jsonObj.put("rtn_ServerMsg1", data.getStringExtra("rtn_ServerMsg1"));
@@ -234,6 +235,7 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                         // mPromise = null;
 
                     }else{
+                        JSONObject jsonObj = new JSONObject();
                         //Log.d(TAG,"resultCode = "+ resultCode);
                         
                         jsonObj.put("rtn_ServerMsg1", "문제발생.. 직원에게 문의하세요.");

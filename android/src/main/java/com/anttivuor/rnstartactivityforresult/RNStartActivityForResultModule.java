@@ -192,11 +192,13 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
     private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
         @Override
         public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-            try {
-                if (requestCode == MSG_REQUEST_OUTSIDEAPPR) {
+
+            if (requestCode == MSG_REQUEST_OUTSIDEAPPR) {
+                try {
+                    JSONObject jsonObj = new JSONObject();
+
                     if (resultCode == MSG_STATE_OK) {
                         Log.d("VPOS-D","dKKKKKKKKKKKKKKKKKKdd");
-                        JSONObject jsonObj = new JSONObject();
 
                         jsonObj.put("rtn_Tran", data.getStringExtra("rtn_Tran"));
                         jsonObj.put("rtn_LEDCode", data.getStringExtra("rtn_LEDCode"));
@@ -215,11 +217,10 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                         jsonObj.put("rtn_CardTypeGubun", data.getStringExtra("rtn_CardTypeGubun"));
 
                         mPromise.resolve(jsonObj);
-                        mPromise = null;
+                        // mPromise = null;
 
                     }else if(resultCode == MSG_STATE_NG){
                         Log.d("VPOS-D","dNNNNNNNNNNNNNNNNNNNNNNd");
-                        JSONObject jsonObj = new JSONObject();
                         
                         jsonObj.put("rtn_ServerMsg1", data.getStringExtra("rtn_ServerMsg1"));
                         jsonObj.put("rtn_LEDCode", data.getStringExtra("rtn_LEDCode"));
@@ -230,19 +231,21 @@ public class RNStartActivityForResultModule extends ReactContextBaseJavaModule {
                         // Toast.makeText(this, Msgebuf, Toast.LENGTH_SHORT).show();
                         
                         mPromise.resolve(jsonObj);
-                        mPromise = null;
+                        // mPromise = null;
 
                     }else{
                         //Log.d(TAG,"resultCode = "+ resultCode);
-                        JSONObject jsonObj = new JSONObject();
                         
                         jsonObj.put("rtn_ServerMsg1", "문제발생.. 직원에게 문의하세요.");
                         jsonObj.put("rtn_LEDCode", "6060");
 
                         mPromise.resolve(jsonObj);
-                        mPromise = null;
+                        // mPromise = null;
                     }
+                } finally {
+                    mPromise = null;
                 }
+
             }
 
             // try {
